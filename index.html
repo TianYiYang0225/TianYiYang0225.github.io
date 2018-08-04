@@ -330,7 +330,7 @@
                 
               
 
-              <time title="创建时间：2018-08-04 19:48:47 / 修改时间：21:24:23" itemprop="dateCreated datePublished" datetime="2018-08-04T19:48:47+08:00">2018-08-04</time>
+              <time title="创建时间：2018-08-04 19:48:47 / 修改时间：23:12:20" itemprop="dateCreated datePublished" datetime="2018-08-04T19:48:47+08:00">2018-08-04</time>
             
 
             
@@ -372,7 +372,7 @@
           
             <h1 id="简单学Vue-一"><a href="#简单学Vue-一" class="headerlink" title="简单学Vue(一)"></a>简单学Vue(一)</h1><p>根据<a href="https://cn.vuejs.org/" target="_blank" rel="noopener">官网</a>文档做一些常用总结</p>
 <ul>
-<li><p><a href="#1">vue实例</a></p>
+<li><p>vue实例</p>
 <ul>
 <li>创建实例</li>
 <li>数据和方法</li>
@@ -383,7 +383,6 @@
 <li>条件渲染<ul>
 <li>v-if&amp;v-else-if&amp;v-else</li>
 <li>v-show</li>
-<li>v-for</li>
 </ul>
 </li>
 <li>列表渲染<ul>
@@ -427,12 +426,32 @@
 <li>绑定Class</li>
 <li>绑定style</li>
 </ul>
-&lt;h3 id=”1”实例&gt;
-
-
-
 </li>
 </ul>
+<h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><h3 id="1-创建一个实例"><a href="#1-创建一个实例" class="headerlink" title="1.创建一个实例"></a>1.创建一个实例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;&lt;/div&gt;</span><br><span class="line">var vm = new Vue(&#123;</span><br><span class="line">  el: &quot;#app&quot;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>对于实例的理解，我认为就是创建了一个对象，你可以在这个对象里去自定义它。</p>
+<!--el提供挂在元素，通俗来说写谁就是对谁的自定义-->
+<h3 id="2-数据和方法"><a href="#2-数据和方法" class="headerlink" title="2.数据和方法"></a>2.数据和方法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;&lt;/div&gt;</span><br><span class="line">var obj = &#123;</span><br><span class="line">	a = 1</span><br><span class="line">&#125; </span><br><span class="line">var vm = new Vue(&#123; </span><br><span class="line">	el: &quot;#app&quot; ,</span><br><span class="line">	data: obj</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p><code>vm.a == data.a</code>这两者是相同的。</p>
+<p>这两者其中之一数据改变，另外一边数据也会改变。</p>
+<p>注：data里的数据只有改变才会导致数据重新加载，如果data中加入了一个新的参数，将不会导致数据重新加载，如果需要预留项，可以先定义为空或者其他值，在要’加入’时，修改数据即可。</p>
+<h2 id="常用指令"><a href="#常用指令" class="headerlink" title="常用指令"></a>常用指令</h2><h3 id="1-条件渲染"><a href="#1-条件渲染" class="headerlink" title="1.条件渲染"></a>1.条件渲染</h3><p>一般做判断条件都放在function里但是vue可以放在标签里</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;h1 v-if=&quot;show&quot;&gt;展示&lt;/h1&gt;</span><br><span class="line">&lt;h1 v-else&gt;不展示&lt;/h1&gt;</span><br></pre></td></tr></table></figure>
+<p>上面这种做法如果’show’是true的话就会显示”展示”，否则就会显示”不展示”。</p>
+<p>包含多个元素时可以用 <template> </template></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;template v-if=&quot;show&quot;&gt;</span><br><span class="line">&lt;h1&gt;&lt;/h1&gt;</span><br><span class="line">&lt;p&gt;&lt;/p&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+<p>如果多条件时(else if)可以采用这种方式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;div v-if=&quot;type === &apos;A&apos;&quot;&gt;</span><br><span class="line">  A</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div v-else-if=&quot;type === &apos;B&apos;&quot;&gt;</span><br><span class="line">  B</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div v-else-if=&quot;type === &apos;C&apos;&quot;&gt;</span><br><span class="line">  C</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div v-else&gt;</span><br><span class="line">  Not A/B/C</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>在重复渲染时，Vue有一个好处就是能用渲染好的，就不重新渲染。这种方式带来的好处就是快，快快快。但是不好的就是，你想两个分开渲染时它这种机制会给你带来麻烦，此时你需要一个<code>key</code>来区分两者，这样vue就是渲染两个元素。</p>
+<p>例:你有两个输入框，一个切换按钮，按钮控制两个输入框显示哪个。你如果在第一个输入框上写了内容，在你切换到第二个输入框时也会存在内容。这是一种并不合理的方式，所以你就需要这个key。具体方法如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;template v-if=&quot;loginType === &apos;username&apos;&quot;&gt;</span><br><span class="line">  &lt;label&gt;Username&lt;/label&gt;</span><br><span class="line">  &lt;input placeholder=&quot;Enter your username&quot; key=&quot;usernameInput&quot;&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">&lt;template v-else&gt;</span><br><span class="line">  &lt;label&gt;Email&lt;/label&gt;</span><br><span class="line">  &lt;input placeholder=&quot;Enter your email address&quot; key=&quot;emailInput&quot;&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+<p>此时你，但是在label元素上，它其实还是被复用了，因为它有key值。</p>
+<p>之前介绍的都是v-if现在来介绍一下v-show</p>
+<p>v-show的使用方式跟v-if非常相似</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;h1 v-show=&quot;ok&quot;&gt;Hello!&lt;/h1&gt;</span><br></pre></td></tr></table></figure>
+<p>ok是true是显示，是false时不显示。</p>
+<p>但是区别在于，不管它是true还是false都会被渲染只不过对于你来说只是看和看不到的问题。</p>
+<p>v-if和v-show来做区分的话就是，v-if像是存在与不存在，v-show就是显示和不显示。</p>
 
           
         
