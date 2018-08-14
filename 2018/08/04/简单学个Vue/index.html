@@ -108,17 +108,17 @@
 
 
 
-  <meta name="description" content="简单学Vue(一)根据官网文档做一些常用总结  vue实例  创建实例 数据和方法   常用指令  条件渲染 v-if&amp;amp;v-else-if&amp;amp;v-else v-show   列表渲染 v-for   事件处理 v-on   数据绑定 v-model   其他指令 v-on v-click     模板语法  文本 HTML JavaScript表达式 参数 缩写   计算属性and监">
+  <meta name="description" content="简单学Vue(一)根据官网文档做一些常用总结  vue实例  创建实例 数据和方法   常用指令  条件渲染 v-if&amp;amp;v-else-if&amp;amp;v-else v-show   列表渲染 v-for 数组变化渲染总结   事件处理 v-on   数据绑定 v-model   其他指令 v-on v-click     模板语法  文本 HTML JavaScript表达式 参数 缩写">
 <meta property="og:type" content="article">
 <meta property="og:title" content="简单学个vue(一)">
 <meta property="og:url" content="http://yoursite.com/2018/08/04/简单学个Vue/index.html">
 <meta property="og:site_name" content="Tian">
-<meta property="og:description" content="简单学Vue(一)根据官网文档做一些常用总结  vue实例  创建实例 数据和方法   常用指令  条件渲染 v-if&amp;amp;v-else-if&amp;amp;v-else v-show   列表渲染 v-for   事件处理 v-on   数据绑定 v-model   其他指令 v-on v-click     模板语法  文本 HTML JavaScript表达式 参数 缩写   计算属性and监">
+<meta property="og:description" content="简单学Vue(一)根据官网文档做一些常用总结  vue实例  创建实例 数据和方法   常用指令  条件渲染 v-if&amp;amp;v-else-if&amp;amp;v-else v-show   列表渲染 v-for 数组变化渲染总结   事件处理 v-on   数据绑定 v-model   其他指令 v-on v-click     模板语法  文本 HTML JavaScript表达式 参数 缩写">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-04T15:12:20.106Z">
+<meta property="og:updated_time" content="2018-08-14T16:36:12.579Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="简单学个vue(一)">
-<meta name="twitter:description" content="简单学Vue(一)根据官网文档做一些常用总结  vue实例  创建实例 数据和方法   常用指令  条件渲染 v-if&amp;amp;v-else-if&amp;amp;v-else v-show   列表渲染 v-for   事件处理 v-on   数据绑定 v-model   其他指令 v-on v-click     模板语法  文本 HTML JavaScript表达式 参数 缩写   计算属性and监">
+<meta name="twitter:description" content="简单学Vue(一)根据官网文档做一些常用总结  vue实例  创建实例 数据和方法   常用指令  条件渲染 v-if&amp;amp;v-else-if&amp;amp;v-else v-show   列表渲染 v-for 数组变化渲染总结   事件处理 v-on   数据绑定 v-model   其他指令 v-on v-click     模板语法  文本 HTML JavaScript表达式 参数 缩写">
 
 
 
@@ -326,12 +326,24 @@
                 
               
 
-              <time title="创建时间：2018-08-04 19:48:47 / 修改时间：23:12:20" itemprop="dateCreated datePublished" datetime="2018-08-04T19:48:47+08:00">2018-08-04</time>
+              <time title="创建时间：2018-08-04 19:48:47" itemprop="dateCreated datePublished" datetime="2018-08-04T19:48:47+08:00">2018-08-04</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-08-15 00:36:12" itemprop="dateModified" datetime="2018-08-15T00:36:12+08:00">2018-08-15</time>
               
             
           </span>
@@ -381,6 +393,7 @@
 </li>
 <li>列表渲染<ul>
 <li>v-for</li>
+<li>数组变化渲染总结</li>
 </ul>
 </li>
 <li>事件处理<ul>
@@ -446,6 +459,28 @@
 <p>ok是true是显示，是false时不显示。</p>
 <p>但是区别在于，不管它是true还是false都会被渲染只不过对于你来说只是看和看不到的问题。</p>
 <p>v-if和v-show来做区分的话就是，v-if像是存在与不存在，v-show就是显示和不显示。</p>
+<h3 id="2-列表渲染"><a href="#2-列表渲染" class="headerlink" title="2.列表渲染"></a>2.列表渲染</h3><p>2.1 v-for</p>
+<p>一般用v-for指令对数组进行渲染，常用操作是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">item in items // items是数组，item相当于循环里的每个items[i]</span><br><span class="line">item of items // of和in代表的功能相同</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;ul id=&quot;example-1&quot;&gt;</span><br><span class="line">  &lt;li v-for=&quot;item in items&quot;&gt;</span><br><span class="line">    &#123;&#123; item.message &#125;&#125;</span><br><span class="line">  &lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var example1 = new Vue(&#123;</span><br><span class="line">  el: &apos;#example-1&apos;,</span><br><span class="line">  data: &#123;</span><br><span class="line">    items: [</span><br><span class="line">      &#123; message: &apos;Foo&apos; &#125;,</span><br><span class="line">      &#123; message: &apos;Bar&apos; &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>v-for最常用的3项(子项,index,key)</p>
+<p><strong><em>子项：代表数组[i]这种情况时</em></strong></p>
+<p><strong><em>index: 索引号</em></strong></p>
+<p><strong><em>Key: 区分子项标志</em></strong></p>
+<p>注: 用v-for时要注意，最好需要绑定一个key值，因为vue要保证在你想操作这些子项时可以找到对应的目标，所以用v-bind绑定一个key值，来区分每一子项。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">例:假设items里有id&#123;id:1,id:2&#125;</span><br><span class="line">&lt;div v-for=&quot;（item, index） in items&quot; :key=&quot;item.id&quot;&gt;</span><br><span class="line">  &lt;!-- 内容 --&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>2.2 数组更新检测</p>
+<p>官网给出的是以下7种方法，在调用时会引发数组进行新的渲染</p>
+<ul>
+<li><code>push()</code> 推，数组最后插入一个新元素，成功返回新长度</li>
+<li><code>pop()</code>抛，删除数组最后一个元素，返回删除的内容</li>
+<li><code>shift()</code>移，删除数组第一个元素，返回删除的值</li>
+<li><code>unshift()</code>移，在数组最前面添加一个元素，返回数组长度</li>
+<li><code>splice()</code>插入，删除，替换splice(光标所放的位置,影响的长度,内容)前两个必填，最后一个选填。<strong><em>技巧:插入，删除，替换，对应的影响长度就是0,(1至n),1</em></strong>。</li>
+<li><code>sort()</code>排序，按字符编码默认从小到大排序,返回排序后的数组</li>
+<li><code>reverse()</code>倒叙，将数组倒序，返回倒序后的数组 </li>
+</ul>
 
       
     </div>
@@ -591,7 +626,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简单学Vue-一"><span class="nav-number">1.</span> <span class="nav-text">简单学Vue(一)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#实例"><span class="nav-number">1.1.</span> <span class="nav-text">实例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-创建一个实例"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.创建一个实例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-数据和方法"><span class="nav-number">1.1.2.</span> <span class="nav-text">2.数据和方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用指令"><span class="nav-number">1.2.</span> <span class="nav-text">常用指令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-条件渲染"><span class="nav-number">1.2.1.</span> <span class="nav-text">1.条件渲染</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简单学Vue-一"><span class="nav-number">1.</span> <span class="nav-text">简单学Vue(一)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#实例"><span class="nav-number">1.1.</span> <span class="nav-text">实例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-创建一个实例"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.创建一个实例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-数据和方法"><span class="nav-number">1.1.2.</span> <span class="nav-text">2.数据和方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用指令"><span class="nav-number">1.2.</span> <span class="nav-text">常用指令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-条件渲染"><span class="nav-number">1.2.1.</span> <span class="nav-text">1.条件渲染</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-列表渲染"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.列表渲染</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
